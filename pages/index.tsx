@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Reservation from "../components/Reservation/Reservation";
 import { useHasHydrated } from "../hooks/useHasHydrated";
@@ -17,7 +16,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <main className={styles.main}>
       {hasHydrated && <Reservation />}
+      </main>
     </div>
   );
 }
