@@ -3,8 +3,8 @@ import { persist, PersistOptions } from "zustand/middleware";
 
 export interface Reservation {
   user: string;
-  startDate: string;
-  endDate: string;
+  startDate: Date;
+  endDate: Date;
 }
 
 export type ReservationSlice = {
