@@ -12,9 +12,9 @@ const ReservationList = ({ reservationDate }: ReservationListProps) => {
     () =>
       reservations.filter((reserve: Reservation) =>
         [
-          format(reserve.startDate, "yyyyMMdd"),
-          format(reserve.endDate, "yyyMMdd"),
-        ].includes(format(reservationDate, "yyyMMdd"))
+          format(new Date(reserve.startDate), "yyyyMMdd"),
+          format(new Date(reserve.endDate), "yyyMMdd"),
+        ].includes(format(new Date(reservationDate), "yyyMMdd"))
       ),
     [reservations, reservationDate]
   );
@@ -29,7 +29,7 @@ const ReservationList = ({ reservationDate }: ReservationListProps) => {
     let formatString: string = isSameDay(value, reservationDate)
       ? "hh a"
       : "EEEE hh a";
-    return format(value, formatString);  
+    return format(new Date(value), formatString);  
   };  
 
   function generateListItems(): React.ReactNode {

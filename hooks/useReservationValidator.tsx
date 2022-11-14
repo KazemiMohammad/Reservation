@@ -7,7 +7,7 @@ const useReservationValidator = (reservations: Reservation[]) => {
     return (
       reservations.find(
         (reserve) =>
-          format(reserve.startDate, "yyyyMMdd") ===
+          format(new Date(reserve.startDate), "yyyyMMdd") ===
             format(selectedDate, "yyyMMdd") && reserve.user === user
       ) === undefined
     );
@@ -26,11 +26,11 @@ const useReservationValidator = (reservations: Reservation[]) => {
 
     const filteredReservations = reservations.filter((reserve: Reservation) =>
       [
-        format(reserve.startDate, "yyyyMMdd"),
-        format(reserve.endDate, "yyyMMdd"),
+        format(new Date(reserve.startDate), "yyyyMMdd"),
+        format(new Date(reserve.endDate), "yyyMMdd"),
       ].includes(format(startDate, "yyyMMdd"))||[
-        format(reserve.startDate, "yyyyMMdd"),
-        format(reserve.endDate, "yyyMMdd"),
+        format(new Date(reserve.startDate), "yyyyMMdd"),
+        format(new Date(reserve.endDate), "yyyMMdd"),
       ].includes(format(endDate, "yyyMMdd"))
     );
     const sortedReservations = filteredReservations.sort(
