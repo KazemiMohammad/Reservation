@@ -22,7 +22,7 @@
 .react-calendar__navigation button[disabled] {
   background-color: #f0f0f0;
 }
-.abbr[title] {
+abbr[title] {
   text-decoration: none;
 }
 /* .react-calendar__month-view__days__day--weekend {
@@ -47,6 +47,15 @@
   font-weight: bold;
   color: #6f48eb;
 }
+.react-calendar__tile{
+  position: relative;
+  height: 40px;
+}
+/* .react-calendar__tile abbr{
+  position: absolute;
+  z-index: 2;
+} */
+
 .react-calendar__tile--hasActive:enabled:hover,
 .react-calendar__tile--hasActive:enabled:focus {
   background: #f8f8fa;
