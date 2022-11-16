@@ -1,6 +1,8 @@
 import React, { useMemo } from "react";
 import { useReservation, Reservation } from "../../lib/useReservation";
 import { format, isSameDay } from "date-fns";
+import ReservationItem from "../ReservationItem/ReservationItem";
+import styles from './ReservationList.module.css';
 interface ReservationListProps {
   reservationDate: Date;
 }
@@ -18,32 +20,14 @@ const ReservationList = ({ reservationDate }: ReservationListProps) => {
       ),
     [reservations, reservationDate]
   );
-  
-  const generateReservationString = (reserve: Reservation): string => {
-    return `${reserve.user} - ${formatDateToDisplay(
-      reserve.startDate
-    )} → ${formatDateToDisplay(reserve.endDate)}`;
-  };
-
-  const formatDateToDisplay = (value: Date) => {
-    let formatString: string = isSameDay(value, reservationDate)
-      ? "hh a"
-      : "EEEE hh a";
-    return format(new Date(value), formatString);  
-  };  
 
   function generateListItems(): React.ReactNode {
     return filteredReservations.map((reserve: Reservation, index: number) => (
-      <div
-        key={reserve.user + index}
-        className="flex rounded m-1 p-2 cursor-pointer bg-violet-200 hover:bg-violet-300 border border-violet-400"
-      >
-        {generateReservationString(reserve)}
-      </div>
+      <ReservationItem key={reserve.user} Reserve={reserve} SelectedDate={reservationDate} />
     ));
   }
 
-  return <div className="flex flex-col">{generateListItems()}</div>;
+  return <div className={styles.ReservationList}>{generateListItems()}</div>;
 };
 
 export default ReservationList;

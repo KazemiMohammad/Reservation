@@ -1,0 +1,43 @@
+.Container{
+    @apply rounded border border-violet-400 m-2 p-2 bg-white;
+}
+
+.InputContainer{
+    @apply flex gap-1;
+}
+
+.Input{
+    @apply flex flex-col;
+}
+
+.Input label{
+    @apply text-sm text-violet-600;
+}
+
+.Input input{
+    @apply border border-violet-200 rounded p-1;
+}
+
+.Input select{
+    @apply border rounded p-1;
+}
+
+.InputCheckBox{
+    @apply m-1 p-1 flex items-end gap-1;
+}
+
+.InputCheckBox input{
+    @apply h-5;
+}
+
+.ButtonContainer{
+    @apply ml-2 flex items-end;
+}
+
+.ButtonContainer button{
+    @apply m-1 p-1 w-20 rounded border bg-violet-100 border-violet-400 text-violet-900;
+}
+
+.Error{
+    @apply text-red-400 text-sm;
+}

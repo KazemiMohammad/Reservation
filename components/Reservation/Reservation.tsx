@@ -6,7 +6,7 @@ import "react-calendar/dist/Calendar.css";
 import { Reservation, useReservation } from "../../lib/useReservation";
 import AddReservation from "../AddReservation";
 import ReservationList from "../ReservationList";
-
+import styles from "./Reservation.module.css";
 const Reservation = () => {
   const { reservations } = useReservation();
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
@@ -50,14 +50,13 @@ const Reservation = () => {
     );
 
     let usedPercentage = Math.floor(hours * 1.25) * 10;
+
     return (
       <>
         <div
-          className={`absolute z-0 w-2 h-2 top-1 right-1 rounded-full bg-green-${usedPercentage}0 box-content border shadow shadow-white`}
+          className={styles.TileUsage + `bg-green-${usedPercentage}0 `}
         ></div>
-        <div className="z-50  bg-violet-100 text-violet-800 p-1 rounded text-sm border border-violet-800 fixed invisible group-hover:visible">
-          Reserved hours: {hours}
-        </div>
+        <div className={styles.TileTooltip}>Reserved hours: {hours}</div>
       </>
     );
   };
@@ -65,9 +64,7 @@ const Reservation = () => {
   return (
     <>
       <div>
-        <h1 className="text-lg font-bold text-violet-600">
-          Select your date to reserve
-        </h1>
+        <h1 className={styles.Title}>Select your date to reserve</h1>
         <Calendar
           onChange={handleSelectDate}
           minDate={new Date()}
@@ -77,9 +74,7 @@ const Reservation = () => {
       </div>
       {isWorkday && <AddReservation selectedDate={selectedDate} />}
       {!isWorkday && (
-        <div className="text-violet-700 font-bold text-lg">
-          Selected day is not a work day!
-        </div>
+        <div className={styles.Title}>Selected day is not a work day!</div>
       )}
       <ReservationList reservationDate={selectedDate} />
     </>

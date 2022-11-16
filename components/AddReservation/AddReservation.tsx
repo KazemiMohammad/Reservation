@@ -1,13 +1,9 @@
 import React from "react";
 import { Reservation, useReservation } from "../../lib/useReservation";
 import { useForm } from "react-hook-form";
-import {
-  getOverlappingDaysInIntervals,
-  areIntervalsOverlapping,
-  format,
-  compareAsc,
-} from "date-fns";
 import useReservationValidator from "../../hooks/useReservationValidator";
+import styles from "./AddReservation.module.css";
+
 type AddReservationFormFields = {
   user: string;
   startHour: number;
@@ -41,6 +37,7 @@ const AddReservation = ({ selectedDate }: { selectedDate: Date }) => {
       </option>
     ));
   };
+
   const isFormDataValid = (formData: AddReservationFormFields): boolean => {
     const { user, startHour, endHour, endNextDay } = formData;
 
@@ -107,62 +104,45 @@ const AddReservation = ({ selectedDate }: { selectedDate: Date }) => {
   });
 
   return (
-    <div className="rounded border border-violet-400 m-2 p-2 bg-white">
+    <div className={styles.Container}>
       <form onSubmit={onSubmit}>
-        <div className="flex">
-          <div className="flex flex-col mr-1">
-            <label htmlFor="user" className="text-sm text-violet-600">
-              Name
-            </label>
-            <input
-              {...register("user", { required: true })}
-              className="border border-violet-200 rounded p-1"
-            />
+        <div className={styles.InputContainer}>
+          <div className={styles.Input}>
+            <label htmlFor="user">Name</label>
+            <input {...register("user", { required: true })} />
           </div>
-          <div className="flex flex-col mx-1">
-            <label htmlFor="user" className="text-sm text-violet-600">
-              From
-            </label>
-            <select {...register("startHour")} className="border rounded p-1">
+          <div className={styles.Input}>
+            <label htmlFor="user">From</label>
+            <select {...register("startHour")}>
               {getAvailableTimeOptions(selectedDate)}
             </select>
           </div>
-          <div className="flex flex-col mx-1">
-            <label htmlFor="user" className="text-sm text-violet-600">
-              To
-            </label>
-            <select {...register("endHour")} className="border rounded p-1">
+          <div className={styles.Input}>
+            <label htmlFor="user">To</label>
+            <select {...register("endHour")}>
               {getAvailableTimeOptions(selectedDate)}
             </select>
           </div>
-          <div className="m-1 p-1 flex items-end gap-1">
+          <div className={styles.InputCheckBox}>
             <input
               {...register("endNextDay")}
               id="endNextDay"
               type="checkbox"
-              className="h-5"
             />
             <label htmlFor="endNextDay"> Until next day</label>
           </div>
-          <div className="ml-2 flex items-end">
-            <button
-              type="submit"
-              className="m-1 p-1 w-20 rounded border bg-violet-100 border-violet-400 text-violet-900"
-            >
-              Add
-            </button>
+          <div className={styles.ButtonContainer}>
+            <button type="submit">Add</button>
           </div>
         </div>
         {errors.user && (
-          <span className="text-red-400 text-sm">{errors.user.message}</span>
+          <span className={styles.Error}>{errors.user.message}</span>
         )}
         {errors.startHour && (
-          <span className="text-red-400 text-sm">
-            {errors.startHour.message}
-          </span>
+          <span className={styles.Error}>{errors.startHour.message}</span>
         )}
         {errors.endHour && (
-          <span className="text-red-400 text-sm">{errors.endHour.message}</span>
+          <span className={styles.Error}>{errors.endHour.message}</span>
         )}
       </form>
     </div>

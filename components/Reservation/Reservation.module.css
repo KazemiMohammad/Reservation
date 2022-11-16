@@ -1,0 +1,11 @@
+.Title{
+    @apply text-lg font-bold text-violet-600
+}
+
+.TileUsage{
+    @apply absolute z-0 w-2 h-2 top-1 right-1 rounded-full box-content border shadow shadow-white;
+}
+
+.TileTooltip{
+    @apply z-50  bg-violet-100 text-violet-800 p-1 rounded text-sm border border-violet-800 fixed invisible group-hover:visible;
+}
